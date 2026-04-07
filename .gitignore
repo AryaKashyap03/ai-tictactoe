@@ -1,0 +1,12 @@
+# Ignore the old game file
+game.cpp
+
+# Ignore compiled executables
+*.exe
+
+# Ignore Python cache and output folders
+__pycache__/
+output/
+
+# Ignore React dependencies (these are huge, Render/Vercel will download them automatically)
+frontend/node_modules/
