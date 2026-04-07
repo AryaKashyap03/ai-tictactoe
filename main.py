@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import subprocess
+import sys # Added this import!
 
 app = FastAPI()
 
@@ -25,10 +26,11 @@ async def get_best_move(data: BoardState):
         raise HTTPException(status_code=400, detail="Board string must be exactly 9 characters.")
 
     try:
-        # This is where the magic happens! We execute the C++ file.
-        # ".\game2.exe" for Windows. Use "./game2" if on Mac/Linux.
+        # Detect if the server is Windows or Linux
+        executable = ".\game2.exe" if sys.platform == "win32" else "./game2"
+        
         result = subprocess.run(
-            ["./game2.exe", data.board], 
+            [executable, data.board], 
             capture_output=True, 
             text=True, 
             check=True
