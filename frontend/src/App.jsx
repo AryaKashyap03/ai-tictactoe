@@ -47,7 +47,7 @@ function App() {
     const boardString = newBoard.join('');
 
     try {
-      const response = await fetch('http://localhost:8000/get-move', {
+      const response = await fetch('https://ai-tictactoe-3wxo.onrender.com/get-move', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ board: boardString })
