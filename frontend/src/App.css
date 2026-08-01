@@ -32,3 +32,12 @@ body{
 .cell:hover {
   background-color: #f0f0f0;
 }
+
+.title {
+    color: white;
+    text-shadow:
+        0 0 5px yellow,
+        0 0 10px yellow,
+        0 0 20px yellow,
+        0 0 40px gold;
+}
