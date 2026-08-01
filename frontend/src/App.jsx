@@ -142,7 +142,7 @@ function App() {
 
   return (
     <div className="game-container">
-      <h1 style={{ color: "white" }}>AI Tic-Tac-Toe</h1>
+      <h1 className ="title">Unbeatable AI Tic-Tac-Toe</h1>
       <div style={{ marginBottom: "20px" }}>
         <label style={{ color: "white", marginRight: "10px" }}>
           Board Size
