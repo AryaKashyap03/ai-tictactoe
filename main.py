@@ -2,11 +2,11 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import subprocess
-import sys # Added this import!
+import sys
 
 app = FastAPI()
 
-# This allows your React frontend (usually running on port 3000 or 5173) to securely talk to this API
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
@@ -18,19 +18,19 @@ app.add_middleware(
 # Define the expected JSON payload
 class BoardState(BaseModel):
     board: str
+    size: int
 
 @app.post("/get-move")
 async def get_best_move(data: BoardState):
     # Quick validation
-    if len(data.board) != 9:
-        raise HTTPException(status_code=400, detail="Board string must be exactly 9 characters.")
+    if len(data.board) != data.size * data.size:
+        raise HTTPException(status_code=400,detail="Invalid board size.")
 
     try:
         # Detect if the server is Windows or Linux
-        executable = ".\game2.exe" if sys.platform == "win32" else "./game2"
-        
+        executable = ".\\game_ai.exe" if sys.platform == "win32" else "./game_ai"
         result = subprocess.run(
-            [executable, data.board], 
+            [executable, data.board,str(data.size)], 
             capture_output=True, 
             text=True, 
             check=True
