@@ -1,0 +1,1 @@
+Unbeatable TicTacToe AI configured for 3x3, 4x4 and 5x5 boards using minimax algorithm and heuristic evaluation functions. Also implemented Zobrist hashing to store game states in an efficient manner.
